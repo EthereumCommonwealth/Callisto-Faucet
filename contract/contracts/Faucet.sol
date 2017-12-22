@@ -4,9 +4,8 @@ import "./Ownable.sol";
 
 
 contract Faucet is Ownable {
-    address owner;
-    uint    blockLimit = 10;
-    uint    amountEther = 10 ether;
+    uint public blockLimit = 10;
+    uint public amountEther = 10 ether;
     mapping (address => uint) lastFaucet;
 
     // Constructor
