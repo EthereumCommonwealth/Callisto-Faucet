@@ -1,12 +1,12 @@
 # Callisto-Faucet
 
-👩‍🚀 Callisto faucet system for testnet.
+Callisto faucet system for testnet.
 
 ## Components
 
-- ⚙️ Backend: Simple Express API with web3.js to interact with the smart contract.
-- 🖥 Frontend: React frontend to communicate the user with the backend and the smart contract.
-- 🐈 Contract: Smart Contract for the Faucet System written in Solidity and Truffle.
+- Backend: Simple Express API with web3.js to interact with the smart contract.
+- Frontend: React frontend to communicate the user with the backend and the smart contract.
+- Contract: Smart Contract for the Faucet System written in Solidity and Truffle.
 
 ## Requirements
 
