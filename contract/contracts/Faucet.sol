@@ -4,7 +4,7 @@ import "./Ownable.sol";
 
 
 contract Faucet is Ownable {
-    uint public blockLimit = 10;
+    uint public blockLimit = 8640; // A day
     uint public amountEther = 10 ether;
     mapping (address => uint) lastFaucet;
 
@@ -34,8 +34,11 @@ contract Faucet is Ownable {
         amountEther = newAmountEther;
     }
 
-    function checkRemainingBlock(address account) public view returns (uint) {
-        return lastFaucet[account] - (block.number - blockLimit);
+    function checkRemainingBlocks(address account) public view returns (uint) {
+        if (lastFaucet[account] > 0) {
+          return lastFaucet[account] - (block.number - blockLimit);
+        }
+        return 0;
     }
 
     // Internal and Private functions
