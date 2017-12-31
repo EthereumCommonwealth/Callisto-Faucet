@@ -1,0 +1,23 @@
+{
+  "name": "callisto-faucet-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx babel index.js --watch --out-file server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ethereumjs-tx": "^1.3.3",
+    "express": "^4.16.2",
+    "web3": "^1.0.0-beta.27"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.36",
+    "@babel/core": "^7.0.0-beta.36",
+    "@babel/preset-env": "^7.0.0-beta.36"
+  }
+}
