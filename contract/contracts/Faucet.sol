@@ -17,7 +17,7 @@ contract Faucet is Ownable {
     // External functions
     function sendEther(address account) public onlyOwner {
         require(this != account);
-        require(account != address(0)); // Please, use a normal address and after funds your contract.
+        require(account != address(0));
         require(canReceiveEther(account) == true);
 
         lastFaucet[account] = block.number;
