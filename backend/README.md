@@ -19,7 +19,7 @@ RPC_SERVER=https://testnet.callisto.network/
 
 ### Run Babel CLI
 
-`npm run start`
+`npm run transpile`
 
 ### Run the server
 
