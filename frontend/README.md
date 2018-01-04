@@ -12,6 +12,6 @@
 
 `yarn start`
 
-### Create a development build
+### Create a production build
 
 `yarn build`
