@@ -10,7 +10,7 @@
 
 ### Run Development Env
 
-`yarn start start`
+`yarn start`
 
 ### Create a development build
 
