@@ -3,8 +3,10 @@ import express from "express";
 import bodyParser from "body-parser";
 import Web3 from "web3";
 import Tx from "ethereumjs-tx";
+import cors from 'cors';
 
-const app = express()
+const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 // Environment vars
