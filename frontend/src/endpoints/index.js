@@ -1,10 +1,11 @@
 import fetch from '../services/fetch';
 
 const endpoints = {
-  faucet: '/faucet/',
+  faucet: process.env.REACT_APP_API_TARGET,
 };
 
 function faucet(data) {
+  console.log(endpoints)
   return fetch.post(endpoints.faucet, data)
   .then((res) => {
     return res.data;
