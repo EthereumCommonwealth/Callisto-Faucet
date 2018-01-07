@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://EthereumCommonwealth.github.io/Callisto-Faucet",
+  "homepage": "https://faucet.callisto.network",
   "dependencies": {
     "axios": "^0.17.1",
     "node-sass-chokidar": "^0.0.3",

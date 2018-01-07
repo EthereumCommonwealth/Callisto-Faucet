@@ -15,14 +15,17 @@ const privateKey = new Buffer(process.env.PRIVATE_KEY, "hex");
 const contractAddress = process.env.CONTRACT_ADDRESS;
 const rpcServer = process.env.RPC_SERVER;
 
-// const web3 = new Web3("https://testnet.callisto.network/");
-const web3 = new Web3(rpcServer);
-
 const faucetABI = JSON.parse(fs.readFileSync("faucet-abi.json", "utf8"));
 
-const Faucet = new web3.eth.Contract(faucetABI, contractAddress);
-
 async function sendTransaction(address) {
+  // const web3 = new Web3("https://testnet.callisto.network/");
+  const web3 = new Web3(rpcServer);
+
+  const Faucet = new web3.eth.Contract(faucetABI, contractAddress);
+
+  if (!web3.utils.isAddress(address)) {
+    return [false, "Your address is not valid"];
+  }
   let remainingBlocks = await Faucet.methods.checkRemainingBlocks(address).call({from: fromAddress});
   remainingBlocks = parseInt(remainingBlocks);
 
@@ -53,16 +56,22 @@ async function sendTransaction(address) {
   tx.sign(privateKey);
   const serializedTx = tx.serialize();
 
+  let transaction = null;
+
   try{
-    const transaction = await web3.eth.sendSignedTransaction("0x" + serializedTx.toString("hex"));
+    transaction = await web3.eth.sendSignedTransaction("0x" + serializedTx.toString("hex"));
     return [transaction.transactionHash, false];
   } catch (error) {
+    if (Object.keys(error).length === 0) {
+      console.log(transaction);
+      return [false, "Waiting for transaction."];
+    }
     return [false, error];
   }
 }
 
 app.post("/faucet", async (req, res) => {
-  const faucetResult = await sendTransaction(req.body.address);
+  const faucetResult = await sendTransaction(req.body.address.trim());
   const resBody = {
     transactionHash: faucetResult[0] ? faucetResult[0] : null,
     error: faucetResult[1] ? faucetResult[1] : null
