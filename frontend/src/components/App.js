@@ -10,6 +10,7 @@ class App extends Component {
       address: '',
       error: false,
       message: false,
+      showSpinner: false,
     };
   }
 
@@ -20,18 +21,32 @@ class App extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
+    this.setState({
+      showSpinner: true,
+      error: false,
+    })
     api.faucet({ address: this.state.address })
       .then((res) => {
         if (res.transactionHash) {
           this.setState({
             message: res.transactionHash,
             error: false,
+            showSpinner: false,
           })
         } else if (res.response.data.error) {
-          this.setState({
-            error: res.response.data.error,
-            message: false,
-          })
+          if (res.response.data.error.length) {
+            this.setState({
+              error: res.response.data.error,
+              message: false,
+              showSpinner: false,
+            });
+          } else {
+            this.setState({
+              error: 'Connection Problem',
+              message: false,
+              showSpinner: false,
+            });
+          }
         }
       })
       .catch((error) => {
@@ -54,11 +69,27 @@ class App extends Component {
             onChange={this.onChange}
             placeholder="Address..."
             type="text"
+            required
           />
-          <input type="submit" className="App-form-submit" value="Submit"/>
+          <a className="App-form-submit" onClick={(evt) => {
+            if (this.state.address !== ""){
+              this.onSubmit(evt);
+            }            
+          }}>Submit</a>
         </form>
+        {this.state.showSpinner ? <i className="fas fa-circle-notch fa-spin fa-3x fa-fw App-Spinner" /> : null}
         {this.state.message ? <p className="App-message">transactionHash: {this.state.message}</p> : null}
-        {this.state.error ? <p className="App-error">Error: {this.state.error}</p> : null}
+        {this.state.error ? <p className="App-error">{this.state.error}</p> : null}
+        <footer className="Footer">
+          <a
+            href="https://github.com/EthereumCommonwealth/Callisto-Faucet"
+            target="_blank"
+            className="Footer-Link"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-github" /> Source Code
+          </a>
+        </footer>
       </div>
     );
   }
