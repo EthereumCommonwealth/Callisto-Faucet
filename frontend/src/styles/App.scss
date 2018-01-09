@@ -76,9 +76,12 @@
 }
 
 .Footer{
-  position: absolute;
+  position: relative;
   bottom: 0;
   padding: 1em;
+  @media all and (min-width: 1200px){
+    position: absolute;
+  }
 }
 
 .Footer-Link{
@@ -93,4 +96,10 @@
   font-size: 22px;
   margin-top: 1em;
   color: #4caf50;
+}
+
+.App-Container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
