@@ -5,7 +5,6 @@ const endpoints = {
 };
 
 function faucet(data) {
-  console.log(endpoints)
   return fetch.post(endpoints.faucet, data)
   .then((res) => {
     return res.data;

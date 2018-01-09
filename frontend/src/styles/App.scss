@@ -3,7 +3,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  padding-top: 5em;
+  position: relative;
+  @media all and (min-width: 1200px) {
+    padding-top: 0;
+    height: 100vh;
+  }
   .App-error{
     color: red;
   }
@@ -55,7 +60,7 @@
   }
   .App-form-submit{
     padding: .5em 1em;
-    background-color: #afafaf;
+    background-color: #4caf50;
     color: #FFF;
     border-radius: 0 5px 5px 0;
     font-size: 1em;
@@ -68,4 +73,24 @@
       cursor: pointer;
     }
   }
+}
+
+.Footer{
+  position: absolute;
+  bottom: 0;
+  padding: 1em;
+}
+
+.Footer-Link{
+  text-decoration: none;
+  color: #000;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.App-Spinner {
+  font-size: 22px;
+  margin-top: 1em;
+  color: #4caf50;
 }

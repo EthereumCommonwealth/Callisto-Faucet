@@ -3,7 +3,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; }
+  padding-top: 5em;
+  position: relative; }
+  @media all and (min-width: 1200px) {
+    .App {
+      padding-top: 0;
+      height: 100vh; } }
   .App .App-error {
     color: red; }
   .App .App-message {
@@ -47,7 +52,7 @@
         width: 500px; } }
   .App-form .App-form-submit {
     padding: .5em 1em;
-    background-color: #afafaf;
+    background-color: #4caf50;
     color: #FFF;
     border-radius: 0 5px 5px 0;
     font-size: 1em;
@@ -57,3 +62,19 @@
       outline: none; }
     .App-form .App-form-submit:hover {
       cursor: pointer; }
+
+.Footer {
+  position: absolute;
+  bottom: 0;
+  padding: 1em; }
+
+.Footer-Link {
+  text-decoration: none;
+  color: #000; }
+  .Footer-Link:hover {
+    cursor: pointer; }
+
+.App-Spinner {
+  font-size: 22px;
+  margin-top: 1em;
+  color: #4caf50; }
