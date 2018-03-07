@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import api from '../endpoints';
-import logo from '../images/logo.jpg';
+import logo from '../images/clo-logo.png';
 import '../styles/App.css';
 
 class App extends Component {
@@ -75,7 +75,7 @@ class App extends Component {
             <a className="App-form-submit" onClick={(evt) => {
               if (this.state.address !== ""){
                 this.onSubmit(evt);
-              }            
+              }
             }}>Submit</a>
           </form>
           {this.state.showSpinner ? <i className="fas fa-circle-notch fa-spin fa-3x fa-fw App-Spinner" /> : null}
