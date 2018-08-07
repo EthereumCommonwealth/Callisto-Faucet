@@ -65,7 +65,7 @@ async function sendTransaction(address) {
     console.log(error)
     if (Object.keys(error).length === 0) {
       console.log(transaction);
-      return [false, "Waiting for transaction."];
+      return [false, "The transaction is on progress. Check it out your address on https://explorer-testnet.callisto.network/home"];
     }
     return [false, error];
   }
