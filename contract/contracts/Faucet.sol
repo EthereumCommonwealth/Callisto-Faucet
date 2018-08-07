@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.24;
 
 import "./Ownable.sol";
 
@@ -16,7 +16,7 @@ contract Faucet is Ownable {
 
     // External functions
     function sendEther(address account) public onlyOwner {
-        require(this != account);
+        require(address(this) != account);
         require(account != address(0));
         require(canReceiveEther(account) == true);
 
@@ -57,6 +57,6 @@ contract Faucet is Ownable {
     }
 
     function checkContractBalance() private view returns (bool) {
-        return this.balance > amountEther;
+        return address(this).balance > amountEther;
     }
 }
