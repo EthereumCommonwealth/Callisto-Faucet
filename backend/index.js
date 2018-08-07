@@ -18,8 +18,8 @@ const rpcServer = process.env.RPC_SERVER;
 const faucetABI = JSON.parse(fs.readFileSync("faucet-abi.json", "utf8"));
 
 async function sendTransaction(address) {
-  // const web3 = new Web3("https://testnet.callisto.network/");
-  const web3 = new Web3(rpcServer);
+  const web3 = new Web3("https://clo-testnet3.0xinfra.com/");
+  //const web3 = new Web3(rpcServer);
 
   const Faucet = new web3.eth.Contract(faucetABI, contractAddress);
 
@@ -37,9 +37,9 @@ async function sendTransaction(address) {
 
   // Construct the raw transaction
   const gasPriceHex = web3.utils.toHex(2000000000000);
-  const gasLimitHex = web3.utils.toHex(300000);
+  const gasLimitHex = web3.utils.toHex(500000);
 
-  const nonce = await web3.eth.getTransactionCount(fromAddress);
+  const nonce = await web3.eth.getTransactionCount(fromAddress, "pending");
   const nonceHex = web3.utils.toHex(nonce);
 
   const rawTx = {
@@ -62,6 +62,7 @@ async function sendTransaction(address) {
     transaction = await web3.eth.sendSignedTransaction("0x" + serializedTx.toString("hex"));
     return [transaction.transactionHash, false];
   } catch (error) {
+    console.log(error)
     if (Object.keys(error).length === 0) {
       console.log(transaction);
       return [false, "Waiting for transaction."];
