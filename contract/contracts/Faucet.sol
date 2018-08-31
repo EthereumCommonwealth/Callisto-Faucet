@@ -35,7 +35,7 @@ contract Faucet is Ownable {
     }
 
     function checkRemainingBlocks(address account) public view returns (uint) {
-        if (lastFaucet[account] > 0) {
+        if (lastFaucet[account] > 0 && lastFaucet[account]>(block.number - blockLimit)) {
           return lastFaucet[account] - (block.number - blockLimit);
         }
         return 0;
